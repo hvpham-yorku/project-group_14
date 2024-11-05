@@ -22,7 +22,7 @@ and user sided messages will be MySQL. The Chatbot will allow users to enter pro
 - Chat with user in general
 - Debating
 
-  ## Key Usage Scenarios:
+## Key Usage Scenarios:
  The main use case for the chatbot will be to provide users with quick assistance in time of rush and stress. The chatbot will always be availabe to accept the users needs and criteria to output a helpful suggestion.
  To extend lets use the Key Users scenarios.
    #### Students: The student has to prepare for an upcoming midterm for his Object Oriented Programming class and doesn't seem to quite grasp the concept on encapsulation. His notes and class recordings are not too helpful either, he uses the chatbot to generate some practice problems related to encapsulation and generate relevent analogies to help him better understand the topic.
