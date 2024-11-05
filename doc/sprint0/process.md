@@ -1,4 +1,4 @@
-# Process: AI Chatbot Project
+# Process: YapBot
 
 ### Team Collaboration
 
