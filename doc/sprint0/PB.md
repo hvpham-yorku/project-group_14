@@ -1,182 +1,181 @@
-# YapBot Product Backlog 
+# Product Backlog for Movie Tracker Social Media App
 
-## User Story 1: Chatbot Activation
+## User Story 1: User Registration
 - **As a** new user,
-- **I want to** start chatting with the bot through a simple activation process,
-- **So that** I can begin my interaction effortlessly.
+- **I want to** create an account using my email,
+- **So that** I can personalize my experience and start tracking movies.
 - **Acceptance Criteria**:
-  - Activation should be initiated by a clear, easily accessible button.
-  - The bot should greet me and briefly explain what it can do.
-  - The response time from activation to interaction should be minimal.
+  - A registration form that collects email, password, and username.
+  - Email verification for account security.
+  - A welcome email that guides me through getting started with the app.
 
-## User Story 2: Natural Language Understanding
+## User Story 2: Social Media Integration
 - **As a** user,
-- **I want the** chatbot to comprehend my everyday language,
-- **So that** our conversation flows naturally.
+- **I want to** link my social media profiles,
+- **So that** I can easily share my activity and connect with friends.
 - **Acceptance Criteria**:
-  - The chatbot must correctly interpret and respond to common phrases and questions.
-  - It should be capable of asking for clarification if my input is unclear.
-  - The bot should handle a wide range of conversational topics relevant to its capabilities.
+  - Options to connect Facebook, Twitter, and Instagram accounts.
+  - Seamless sharing of my movie reviews and ratings on these platforms.
+  - Ability to invite friends from social media to join the app.
 
-## User Story 3: Personalized Responses
-- **As a** returning user,
-- **I want to** receive responses tailored to my previous interactions,
-- **So that** the chat feels more personalized and engaging.
+## User Story 3: Movie Search Functionality
+- **As a** user,
+- **I want to** search for movies by title, genre, or actor,
+- **So that** I can find my favorite movies and discover new ones.
 - **Acceptance Criteria**:
-  - The chatbot remembers and utilizes my past preferences and interactions.
-  - It adapts its responses based on my history.
-  - I should be able to update my preferences anytime through the chat interface.
+  - A search bar with autocomplete suggestions.
+  - Filters to refine search results by genre, release date, or ratings.
+  - Search results include movie posters, ratings, and a brief synopsis.
 
-## User Story 4: Multi-language Support
+## User Story 4: Create and Manage Watchlists
+- **As a** user,
+- **I want to** create multiple watchlists,
+- **So that** I can organize movies I plan to watch.
+- **Acceptance Criteria**:
+  - Ability to create, edit, and delete watchlists.
+  - Options to add movies to watchlists directly from search results.
+  - Sharing of watchlists with friends or publicly on my profile.
+
+## User Story 5: Movie Rating System
+- **As a** user,
+- **I want to** rate movies I’ve watched,
+- **So that** I can share my opinion and influence movie rankings.
+- **Acceptance Criteria**:
+  - A 5-star rating system, with half-star increments.
+  - An option to update my rating at any time.
+  - Ratings should be visible on my profile and contribute to the community's overall score for the movie.
+
+## User Story 6: Writing Reviews
+- **As a** user,
+- **I want to** write reviews for movies,
+- **So that** I can express my thoughts and contribute to discussions.
+- **Acceptance Criteria**:
+  - A text box for writing reviews, supporting up to 1000 words.
+  - Ability to edit or delete my reviews.
+  - Reviews should be date-stamped and display my username.
+
+## User Story 7: Following Friends
+- **As a** user,
+- **I want to** follow my friends and favorite critics,
+- **So that** I can keep up with their movie recommendations and reviews.
+- **Acceptance Criteria**:
+  - A 'Follow' button on user profiles.
+  - A feed that displays activity (reviews, ratings) from people I follow.
+  - Notifications when friends post new content.
+
+## User Story 8: Recommendations Engine
+- **As a** user,
+- **I want to** receive personalized movie recommendations,
+- **So that** I can discover movies aligned with my tastes.
+- **Acceptance Criteria**:
+  - Recommendations based on my ratings, watch history, and preferences.
+  - An option to adjust preference settings for better-tailored suggestions.
+  - A dedicated section for daily/weekly movie suggestions.
+
+## User Story 9: Trending Movies
+- **As a** user,
+- **I want to** see trending movies,
+- **So that** I’m up to date with popular titles.
+- **Acceptance Criteria**:
+  - A section on the home page dedicated to movies trending in the community.
+  - Trending movies based on the number of recent ratings and reviews.
+  - Links to full movie details from the trending section.
+
+## User Story 10: Movie Details Page
+- **As a** user,
+- **I want to** access a detailed page for each movie,
+- **So that** I can see all relevant information in one place.
+- **Acceptance Criteria**:
+  - The movie page includes synopsis, cast, crew, trailers, and user ratings.
+  - Sections for professional critic reviews and user reviews.
+  - Links to watch the movie on streaming platforms if available.
+
+## User Story 11: Notifications System
+- **As a** user,
+- **I want to** receive notifications about new releases and interactions,
+- **So that** I stay informed about movies and community activity.
+- **Acceptance Criteria**:
+  - Options to customize notification settings.
+  - Alerts for new movies, updates from friends, and reactions to my reviews.
+  - Notifications accessible within the app and optionally via email.
+
+## User Story 12: Privacy Settings
+- **As a** user,
+- **I want to** control the privacy of my profile and activities,
+- **So that** I can manage what I share and with whom.
+- **Acceptance Criteria**:
+  - Settings to make my profile public, private, or visible to friends only.
+  - Control over who can see my watchlists and reviews.
+  - Ability to block other users.
+
+## User Story 13: Mobile and Desktop Compatibility
+- **As a** user,
+- **I want to** use the app on any device,
+- **So that** I can enjoy a consistent experience across platforms.
+- **Acceptance Criteria**:
+  - Responsive design that adapts to mobile, tablet, and desktop screens.
+  - Features and performance are consistent across all platforms.
+  - Syncing of user data and preferences across devices.
+
+## User Story 14: Community Forums
+- **As a** user,
+- **I want to** participate in movie forums,
+- **So that** I can discuss movies in depth with the community.
+- **Acceptance Criteria**:
+  - Forums organized by movie genre and other topics.
+  - Ability to create threads, post comments, and upvote/downvote.
+  - Moderation tools to report inappropriate content and spam.
+
+## User Story 15: Viewing History
+- **As a** user,
+- **I want to** track the movies I’ve watched,
+- **So that** I can remember what I’ve seen and when.
+- **Acceptance Criteria**:
+  - Automatic tracking of movies I rate or review.
+  - A chronological history viewable on my profile.
+  - Options to add movies to my history manually.
+
+## User Story 16: Multi-Language Support
 - **As a** non-English speaker,
-- **I want to** interact with the chatbot in my native language,
-- **So that** I can use the service more comfortably.
+- **I want to** use the app in my preferred language,
+- **So that** I can navigate easily and enjoy the app’s features.
 - **Acceptance Criteria**:
-  - The bot should support multiple languages, starting with at least English, Spanish, and French.
-  - I should be able to change the language setting easily within the chat interface.
-  - All bot communications should be accurately translated, including buttons and help texts.
+  - Support for multiple languages, including Spanish, French, German, and Mandarin.
+  - Language settings easy to find and change in user preferences.
+  - Translation of all app content, maintaining cultural and contextual accuracy.
 
-## User Story 5: External API Integration
-- **As an** admin,
-- **I want the** chatbot to fetch data from and interact with external APIs,
-- **So that** it can perform actions like making bookings, checking the weather, or retrieving information.
+## User Story 17: Advertising and Promotions
+- **As an** advertiser,
+- **I want to** promote movies or related products in the app,
+- **So that** I can reach a targeted audience of movie enthusiasts.
 - **Acceptance Criteria**:
-  - Secure integration with APIs for dynamic data retrieval and action execution.
-  - Maintenance of API key security and user data privacy.
-  - Reliable and timely responses when the bot uses external services.
+  - Dedicated ad spaces that don’t interfere with user experience.
+  - Tools for advertisers to target ads based on user demographics and interests.
+  - Tracking and analytics for ad performance.
 
-## User Story 6: Feedback Mechanism
+## User Story 18: Offline Access
 - **As a** user,
-- **I want to** easily provide feedback on my chatbot experience,
-- **So that** the developers can continuously improve the bot.
+- **I want to** access certain features of the app offline,
+- **So that** I can use the app even when I don’t have an internet connection.
 - **Acceptance Criteria**:
-  - I can offer feedback directly in the chat.
-  - There should be options to rate my experience and suggest improvements.
-  - The bot confirms receipt of my feedback and outlines the expected follow-up process.
+  - Ability to view downloaded watchlists and movie details offline.
+  - Offline access to my viewing history and saved reviews.
+  - Syncing of offline activity once back online.
 
-## User Story 7: Scalability
+## User Story 19: Content Moderation
 - **As an** admin,
-- **I want the** chatbot to efficiently handle a growing number of users,
-- **So that** service quality remains high as demand increases.
+- **I want to** moderate the content posted by users,
+- **So that** the app remains a safe and respectful environment.
 - **Acceptance Criteria**:
-  - The chatbot architecture supports scaling to handle more simultaneous conversations.
-  - Performance benchmarks should be maintained regardless of user load.
-  - Scalability solutions should be easy to implement as needed.
+  - Tools to review reported content and user profiles.
+  - Ability to remove content or suspend users violating community guidelines.
+  - Transparency in moderation practices and guidelines.
 
-## User Story 8: Graceful Error Handling
-- **As a** user,
-- **I want the** chatbot to manage errors smoothly,
-- **So that** any interruptions don't degrade my experience.
+## User Story 20: Sponsorship and Partnerships
+- **As a** business development manager,
+- **I want to** establish partnerships with movie studios and streaming services,
+- **So that** we can offer exclusive content and deals to our users.
 - **Acceptance Criteria**:
-  - The bot provides helpful feedback during system errors.
-  - It offers alternative options if it can't process a request.
-  - All errors are logged for further review and rapid resolution.
-
-## User Story 9: Data Security
-- **As a** user concerned about privacy,
-- **I want to** be assured that my interactions with the chatbot are secure,
-- **So that** I can trust the service with my personal information.
-- **Acceptance Criteria**:
-  - Implementation of robust encryption for all data exchanges.
-  - Compliance with the latest privacy regulations and standards.
-  - Transparent communication about how my data is used and stored.
-
-## User Story 10: Continuous Learning
-- **As an** admin,
-- **I want the** chatbot to learn from its interactions,
-- **So that** it constantly improves and becomes more effective.
-- **Acceptance Criteria**:
-  - Use of machine learning techniques to enhance response accuracy over time.
-  - Regular updates to the knowledge base based on new data.
-  - Monitoring tools to track the chatbot's learning progress and effectiveness.
-
-## User Story 11: Contextual Understanding
-- **As a** user engaged in a conversation,
-- **I want the** chatbot to remember the context of our chat,
-- **So that** I don’t have to repeat myself.
-- **Acceptance Criteria**:
-  - The chatbot maintains an ongoing understanding of the conversation thread.
-  - It should handle transitions smoothly when I bring up related topics or previous questions.
-  - If the chat spans multiple sessions, it should recall relevant past details.
-
-## User Story 12: Voice Interaction
-- **As a** user on the go,
-- **I want to** talk to the chatbot using voice commands,
-- **So that** I can remain hands-free.
-- **Acceptance Criteria**:
-  - Voice-to-text functionality that accurately captures my spoken input.
-  - The chatbot responds audibly, allowing for a completely voice-driven interaction.
-  - It should support key voice commands for navigation and functionality.
-
-## User Story 13: Customizable Chatbot Personality
-- **As a** user,
-- **I want to** choose the personality of the chatbot,
-- **So that** my experience is more enjoyable and aligned with my preferences.
-- **Acceptance Criteria**:
-  - I can select from different personality options, like friendly, formal, or witty.
-  - The chatbot changes its conversational style based on my selection.
-  - Switching personalities can be done anytime from the settings.
-
-## User Story 14: Proactive Assistance
-- **As a** busy user,
-- **I want the** chatbot to suggest helpful reminders and tips,
-- **So that** I stay informed without having to ask.
-- **Acceptance Criteria**:
-  - The chatbot anticipates my needs based on our chats and offers useful suggestions.
-  - It alerts me about relevant events or tasks without my prompt.
-  - I can opt into or out of this feature according to my preference.
-
-## User Story 15: Training Interface for Non-tech Admins
-- **As an** admin without technical expertise,
-- **I want a** straightforward interface to train the chatbot,
-- **So that** I can manage its responses and accuracy myself.
-- **Acceptance Criteria**:
-  - A graphical interface that lets me input examples and correct the bot’s responses.
-  - Tools to easily review and adjust the chatbot’s learning parameters.
-  - Changes in training data should immediately influence the chatbot's interactions.
-
-## User Story 16: Compliance with Accessibility Standards
-- **As a** user with specific accessibility needs,
-- **I want the** chatbot to be fully accessible,
-- **So that** I can interact with it just as easily as anyone else.
-- **Acceptance Criteria**:
-  - The chat interface complies with global accessibility standards, including screen reader compatibility.
-  - It offers high-contrast modes and text resizing for those with visual impairments.
-  - Regular reviews to ensure compliance is maintained as features are updated.
-
-## User Story 17: Downtime and Maintenance Alerts
-- **As a** regular user,
-- **I want to** be informed about any downtime in advance,
-- **So that** I can plan my schedule accordingly.
-- **Acceptance Criteria**:
-  - Clear communication about planned maintenance well in advance.
-  - Alerts about downtime are sent through multiple channels, ensuring I’m aware.
-  - Information on how long the service will be unavailable and why.
-
-## User Story 18: Real-time Language Translation
-- **As a** multicultural user,
-- **I want the** chatbot to translate our conversation in real-time,
-- **So that** I can chat with users from different linguistic backgrounds.
-- **Acceptance Criteria**:
-  - The chatbot supports instant translation between multiple languages.
-  - I can set my preferred language and the target language easily.
-  - Translations maintain the accuracy and tone of the original message.
-
-## User Story 19: Analytics Dashboard for Chatbot Performance
-- **As an** admin,
-- **I want to** see how the chatbot is performing through an analytics dashboard,
-- **So that** I can optimize its operation and user satisfaction.
-- **Acceptance Criteria**:
-  - A comprehensive dashboard showing user engagement, satisfaction levels, and common queries.
-  - Data should be up-to-date and reflect real-time interactions.
-  - The dashboard allows for exporting data for detailed analysis.
-
-## User Story 20: Multi-platform Availability
-- **As a** user who switches between devices,
-- **I want the** chatbot available on all my platforms,
-- **So that** I can continue conversations seamlessly.
-- **Acceptance Criteria**:
-  - Uniform chatbot functionality across web browsers, mobile apps, and major social media platforms.
-  - Consistent user experience and interface on all platforms.
-  - Ability to pick up where I left off, regardless of the device or platform I use.
-
+  - Features for showcasing sponsored content and exclusive offers.
+  - Tools for managing partnerships and tracking their success.
+  - Promotion of partnerships through app notifications and special events.
