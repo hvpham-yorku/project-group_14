@@ -1,64 +1,51 @@
 # Definition of Done
 
 ## Introduction
+Our Definition of Done (DoD) sets clear standards for when a feature is complete in Rateflix. This ensures that every user story meets quality and functionality expectations agreed upon by the team.
 
-The **Definition of Done (DoD)** ensures that every feature for YapBot meets our team's quality and completeness standards. This DoD applies to all user stories and is agreed upon by the entire team.
-
-## Standard Definition of Done
+## What We Consider "Done"
 
 ### Code Completion
-
-- All necessary code is written and follows the MVC architecture.
-- Adheres to best practices for Java (Spring Boot) and JavaScript (React.js).
+- All code is finished and follows the chosen architecture pattern (MVC, Microservices, or Three-tier).
+- Code aligns with best practices for JavaScript, specifically for Express.js on the backend and React.js on the frontend.
 
 ### Testing
-
-- Comprehensive unit and integration tests are in place and pass successfully.
-- No critical or high-severity bugs remain.
+- We’ve written unit tests for main functions and integration tests for how components work together.
+- All tests pass with no serious bugs left behind.
 
 ### Documentation
-
-- Code is well-documented with clear comments.
-- User and technical documentation are updated as needed.
+- Code includes helpful comments where needed.
+- Both user and technical documentation reflect any new features or updates.
 
 ### Code Review
-
-- Code has been reviewed and approved by at least one team member.
-- All feedback from reviews is addressed.
+- At least one team member has reviewed and approved the code.
+- All review feedback has been addressed before merging.
 
 ### Integration
-
-- Feature integrates seamlessly with backend (Spring Boot) and frontend (React.js).
-- Necessary MySQL database updates are implemented and tested.
+- The feature connects smoothly with the backend (Express.js), frontend (React.js), and database (MySQL).
+- Necessary database updates are complete and tested.
 
 ### Deployment
+- Code is committed to GitHub with clear, descriptive commit messages.
+- The project builds without errors and is ready to deploy.
+- The feature is deployed to a staging environment for final testing.
 
-- Changes are committed to GitHub with descriptive commit messages.
-- The project builds successfully without errors.
-- Feature is deployed to the staging environment for final testing.
+## Additional Items in Our Definition of Done
 
-## Additional Definition of Done
-
-### User Acceptance Testing (UAT)
-
-- Initial user feedback is gathered and incorporated.
+### User Acceptance Testing
+- We gather and incorporate initial user feedback to improve the feature.
 
 ### Security Standards
-
 - User authentication is secure, and sensitive data is protected.
-- All user inputs are validated to prevent vulnerabilities like SQL injection.
+- All user inputs are validated to prevent vulnerabilities, such as SQL injection.
 
-### UI/UX Requirements
+### UI/UX Standards
+- The feature follows Rateflix’s design guidelines, with a consistent style and accessible interface.
+- User interactions feel intuitive and fit Rateflix’s social and rating features.
 
-- Feature has a user-friendly interface consistent with YapBot’s design.
-- Accessibility standards are met to support users with disabilities.
-
-### Compliance with Requirements
-
-- Meets all functional requirements outlined in user stories.
-- Adheres to non-functional requirements such as usability, reliability, and maintainability.
+### Meeting Requirements
+- Each feature meets the functional and non-functional requirements described in user stories.
+- Non-functional needs, like usability, reliability, and maintainability, are covered.
 
 ## Team Agreement
-
-All team members have reviewed and agreed upon this Definition of Done, ensuring alignment on quality and completeness standards for each feature and user story in YapBot.
-
+The entire team has reviewed and agreed on this Definition of Done, making sure we’re aligned on quality and completeness for each feature in Rateflix.
