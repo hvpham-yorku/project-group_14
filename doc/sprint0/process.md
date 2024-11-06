@@ -1,4 +1,4 @@
-# Process: YapBot
+# Process
 
 ### Team Collaboration
 
