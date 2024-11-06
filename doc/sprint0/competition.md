@@ -1,53 +1,50 @@
 # Competition Analysis
 
-## Existing AI Chatbots
+## Existing Products
+### [Letterboxd](https://letterboxd.com)
+Letterboxd lets users log, rate, and review movies while following other movie enthusiasts.
 
-There are already a few AI chatbots out there that offer similar features to what we’re building, such as helping with schoolwork, boosting productivity, and answering general questions. Some of the main ones are:
+### [IMDb](https://www.imdb.com/)
+IMDb provides a large database of movies, ratings, and user reviews.
 
-### [ChatGPT](https://www.openai.com/product/chatgpt)
-ChatGPT is a versatile tool that can assist with a wide range of tasks, including homework help, coding support, and everyday conversations.
+### [Rotten Tomatoes](https://www.rottentomatoes.com/)
+Rotten Tomatoes compiles movie reviews and ratings from critics and audiences.
 
-### [Google Bard](https://bard.google.com)
-Google Bard focuses on giving detailed answers, summaries, and helping with research by leveraging Google’s search power.
-
-### [Microsoft Copilot](https://www.microsoft.com/en-us/microsoft-365/copilot)
-Microsoft Copilot is built into Microsoft Office tools and assists in creating documents, summarizing content, making data visuals, and handling other productivity tasks within Microsoft’s apps.
 
 ## Differentiation
 
-### Targeted Educational Support
-Unlike general chatbots, our AI chatbot is specifically designed to help students, teachers, and employees. For students, it can generate practice problems to help with studying. Teachers can create customized test sheets based on their specific guidelines, and employees can receive useful productivity tips to make their workday more efficient.
+### Social Interaction
+Rateflix brings movie tracking and social features together. Users can follow others, post comments, rate reviews, and interact in a community. IMDb and Rotten Tomatoes focus on reviews but lack this level of user connection.
 
-### Personalization and Flexibility
-Users can customize the chatbot’s responses to match their specific needs, making it easier to create personalized study materials and quick aids.
+### Review Ratings
+Rateflix lets users rate each other's reviews, not just movies. This highlights useful reviews and helps users find the best content. Letterboxd doesn’t offer this extra way to engage with others.
 
-### Stress-Responsive Design
-Our chatbot is built to provide fast and relevant help when users are under time pressure. For someone who has an urgent assignment, a tight deadline, or needs immediate support.
+### Personalized Suggestions
+Rateflix recommends movies based on each user’s activity and interests. This approach goes beyond the usual suggestions, helping users find titles that match their tastes.
 
 ## User Scenarios and Competitive Edge
 
-### Students
-**Scenario:** A college student is preparing for multiple midterms and struggling with subjects like Object-Oriented Programming.  
-**Advantage:** Our chatbot can create many practice problems for OOP topics, like encapsulation, and use analogies to make complex concepts easier to understand.
+### Movie Enthusiasts
+**Scenario:** A movie fan wants to track and rate every film they've watched, creating a personal log of ratings and reviews.  
 
-### Teachers
-**Scenario:** A teacher is preparing a test for her 7th-grade class with specific guidelines and has limited time to get everything ready.  
-**Advantage:** The chatbot can generate sample test sheets based on the teacher’s criteria, saving her time and ensuring the tests meet her requirements.
+**Advantage:** Rateflix allows users to build a detailed movie profile, tracking each rating and review over time, helping them easily revisit their thoughts on past films and share them with others.
 
-### Employees
-**Scenario:** An employee needs to create a balance sheet in Microsoft Excel but doesn’t have much experience and can’t spend hours looking for tutorials.  
-**Advantage:** Our chatbot provides specific Excel tips and syntax guidance tailored to the task, helping the employee complete the assignment quickly without having to dig through extensive tutorials or documentation.
+### Recommendation Seekers
+**Scenario:** A viewer looking for a weekend movie wants recommendations that align with their unique tastes and interests.
+
+**Advantage:** Rateflix provides personalized suggestions based on viewing history and ratings, making it easier for users to find new films suited to their preferences without browsing through generic lists.
+
 
 ## Why Competitors Miss These Opportunities
 
-### General Audience Focus
-Most existing chatbots are built to serve a wide audience, which means they don’t focus on specialized needs like ours.
+### Data-Centric Approach
+Platforms like IMDb and Rotten Tomatoes focus primarily on providing movie information and ratings. Their model centers around data rather than interaction, so they don’t emphasize social features. For them to match Rateflix, they’d need to add user-driven tools like review ratings and interactive activity feeds.
 
-### Specialized Educational Tools
-While chatbots like ChatGPT and Google Bard can help with general questions, they don’t offer tools specifically for creating educational materials or tailored study aids.
+### Focus on Individual Logging over the Community
+Letterboxd, while more community-oriented, focuses on personal logging and diary-style reviews without fully interactive social features. Rateflix differs by creating a truly social experience. Users can engage actively by rating others’ reviews, following friends, and joining discussions, building more of a community than a solitary log.
 
-### Task-Specific Productivity Support
-Microsoft Copilot works well with Office tools, but it doesn't offer the same level of tailored assistance for tasks beyond creating and summarizing documents.
+### Shift to a Social Model
+For IMDb, Rotten Tomatoes, and Letterboxd to replicate Rateflix, they’d need to move beyond their current focus to a more dynamic community-centered model. This shift would require adding social feeds, following features, and tools for engagement, encouraging two-way interaction instead of limiting users to static reviews and ratings.
 
 ---
 
