@@ -72,6 +72,3 @@ The **Definition of Done (DoD)** ensures that every feature for YapBot meets our
 
 All team members have reviewed and agreed upon this Definition of Done, ensuring alignment on quality and completeness standards for each feature and user story in YapBot.
 
-## Application to All User Stories
-
-Every user story for YapBot must meet both the standard and applicable additional criteria before being marked as complete. This ensures that all features are thoroughly vetted, tested, and documented, resulting in a robust, reliable, and user-friendly AI chatbot.
