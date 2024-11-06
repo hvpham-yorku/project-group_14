@@ -1,4 +1,4 @@
-# Product Backlog for AI Chatbot Project
+# YapBot Product Backlog 
 
 ## User Story 1: Chatbot Activation
 - **As a** new user,
