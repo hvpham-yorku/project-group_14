@@ -1,8 +1,9 @@
-# YapBot
+# Rateflix
 
 ## Motivation
-##### Welcome to YapBot. A fullstack AI powered chat bot web application. The backend of this project is powered by Java's Spring Boot framework, Frontend is ran through JavaScript's React.js framework for enhanced UI/UX. to further improve the UI/UX, components from external libraries such as Bootstrap, toastify, and aceternity.ui are also included.
-##### Some of the problems this application solves and addresses is aiding users in time of stress and dense schedules. Sometimes we are packed with way too many tasks and responsibilities to handle all at once. The goal of this project is to provide users with a helping hand during these times and lighten the weight of a few of those tasks.
+##### Welcome to Rateflix. A fullstack web application. The backend of this project is powered by Java's Spring Boot framework, Frontend is ran through JavaScript's React.js framework for enhanced UI/UX. to further improve the UI/UX, components from external libraries such as Bootstrap, toastify, and aceternity.ui are also included.
+##### The purpose of this web app is to play the role as a social media rating app for movies, shows, serials, etc. Users are able to create posts of recent movies or work they've seen and write a quick review and rate it. Other users are able to see these posts to help them decide whether they should watch it or not.
+##### Some of the problems this application solves is helping users save time deciding what movie to watch by showing them a quick rundown of each title all in one place.
 ##### Some general purposes and objectives of the project are outlined in the ``` summary.md ``` file.
 
 ## Installation
