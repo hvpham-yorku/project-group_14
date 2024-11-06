@@ -43,11 +43,6 @@ The **Definition of Done (DoD)** ensures that every feature for YapBot meets our
 
 - Initial user feedback is gathered and incorporated.
 
-### Performance Metrics
-
-- YapBot responds within an acceptable time frame (e.g., under 2 seconds).
-- The feature performs well under expected load conditions.
-
 ### Security Standards
 
 - User authentication is secure, and sensitive data is protected.
@@ -62,11 +57,6 @@ The **Definition of Done (DoD)** ensures that every feature for YapBot meets our
 
 - Meets all functional requirements outlined in user stories.
 - Adheres to non-functional requirements such as usability, reliability, and maintainability.
-
-### Analytics and Monitoring
-
-- Relevant analytics are implemented to monitor feature usage and performance.
-- Errors are logged appropriately for future troubleshooting.
 
 ## Team Agreement
 
