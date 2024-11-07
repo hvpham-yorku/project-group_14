@@ -17,7 +17,7 @@ Rotten Tomatoes compiles movie reviews and ratings from critics and audiences.
 Rateflix brings movie tracking and social features together. Users can follow others, post comments, rate reviews, and interact in a community. IMDb and Rotten Tomatoes focus on reviews but lack this level of user connection.
 
 ### Review Ratings
-Rateflix lets users rate each other's reviews, not just movies. This highlights useful reviews and helps users find the best content. Letterboxd doesn’t offer this extra way to engage with others.
+Rateflix lets users rate each other's reviews. This highlights useful reviews and helps users find the best content. Letterboxd doesn’t offer this extra way to engage with others.
 
 ### Personalized Suggestions
 Rateflix recommends movies based on each user’s activity and interests. This approach goes beyond the usual suggestions, helping users find titles that match their tastes.
@@ -41,7 +41,7 @@ Rateflix recommends movies based on each user’s activity and interests. This a
 Platforms like IMDb and Rotten Tomatoes focus primarily on providing movie information and ratings. Their model centers around data rather than interaction, so they don’t emphasize social features. For them to match Rateflix, they’d need to add user-driven tools like review ratings and interactive activity feeds.
 
 ### Focus on Individual Logging over the Community
-Letterboxd, while more community-oriented, focuses on personal logging and diary-style reviews without fully interactive social features. Rateflix differs by creating a truly social experience. Users can engage actively by rating others’ reviews, following friends, and joining discussions, building more of a community than a solitary log.
+Though Letterboxd has a community-driven aspect, it focuses more on personal logs and diary-style reviews. In contrast, Rateflix encourages social interaction, allowing users to rate reviews, follow friends, and participate in discussions.
 
 ### Shift to a Social Model
 For IMDb, Rotten Tomatoes, and Letterboxd to replicate Rateflix, they’d need to move beyond their current focus to a more dynamic community-centered model. This shift would require adding social feeds, following features, and tools for engagement, encouraging two-way interaction instead of limiting users to static reviews and ratings.
