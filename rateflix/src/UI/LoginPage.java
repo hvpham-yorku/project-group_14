@@ -4,10 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.*;
 
 import javax.swing.*;
 
 import base.User;
+import database.DatabaseSetup;
 
 public class LoginPage extends JFrame implements ActionListener {
 	private JTextField usernameField;
@@ -81,11 +83,11 @@ public class LoginPage extends JFrame implements ActionListener {
     
     private boolean authenticate(String username, String password) {
     	// Establishing a database connection
-    	try (Connection connection = DatabaseConnector.getConnection();
+    	try (Connection connection = DatabaseSetup.getConnection();
     			// Creating a PreparedStatement to execute a SQL query
                 PreparedStatement preparedStatement = connection.prepareStatement(
                 		// SQL query to select user account with provided username, password, and account type as 'Child'
-                        "SELECT * FROM Accounts WHERE username = ? AND password = ? AND accountType = 'Child'")) {
+                        "SELECT * FROM users WHERE username = ? AND password = ?")) {
     		   // Set parameters for the prepared statement
                preparedStatement.setString(1, username);
                preparedStatement.setString(2, password);
