@@ -84,16 +84,11 @@ public class LoginPage extends JFrame implements ActionListener {
     private boolean authenticate(String username, String password) {
     	// Establishing a database connection
     	try (Connection connection = DatabaseSetup.getConnection();
-    			// Creating a PreparedStatement to execute a SQL query
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                		// SQL query to select user account with provided username, password, and account type as 'Child'
                         "SELECT * FROM users WHERE username = ? AND password = ?")) {
-    		   // Set parameters for the prepared statement
                preparedStatement.setString(1, username);
                preparedStatement.setString(2, password);
-               // Execute the query and obtain a ResultSet
                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-            	   // If ResultSet contains any data, authentication is successful, return true
                    return resultSet.next();
                }
            } catch (SQLException ex) {
@@ -104,8 +99,7 @@ public class LoginPage extends JFrame implements ActionListener {
     }
     
     private void openHome() {
-    	User user = new User("userName", "passWord");
-        new Home(user);
+        new WatchlistFrontend().run();
     }
 	
 	public static void main(String[] args) {

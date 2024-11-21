@@ -63,5 +63,33 @@ public class DatabaseSetup {
             throw new RuntimeException("Failed to create required tables", e);
         }
     }
+    
+    public static void insertAccount(String username, String password) {
+	    try (Connection connection = getConnection();
+	         PreparedStatement preparedStatement = connection.prepareStatement(
+	                 "INSERT INTO users (username, password) VALUES (?, ?)")) {
+	        preparedStatement.setString(1, username);
+	        preparedStatement.setString(2, password);
+	        preparedStatement.executeUpdate();
+
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	public static boolean checkIfAccountExists(String username) {
+		try (Connection connection = getConnection();
+				PreparedStatement prep = connection.prepareStatement("SELECT * FROM users WHERE username = ?")){
+			prep.setString(1, username);
+			try (ResultSet res = prep.executeQuery()){
+				return res.next();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 
 }

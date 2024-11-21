@@ -23,7 +23,7 @@ public class WatchlistFrontend {
 		new WatchlistFrontend().run();
 	}
 
-	private void run() {
+	void run() {
 		setupUI();
 		loadWatchlists();
 	}
