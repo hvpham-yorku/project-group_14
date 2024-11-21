@@ -69,15 +69,14 @@ public class ReviewPage extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 652, 505);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 0, 64));
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Make a Review");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 25));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 25));
 		lblNewLabel.setBounds(10, 11, 261, 41);
 		contentPane.add(lblNewLabel);
 		
@@ -87,14 +86,13 @@ public class ReviewPage extends JFrame {
 		
 		JTextArea textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
-		textArea.setForeground(new Color(255, 255, 255));
-		textArea.setBackground(new Color(7, 101, 156));
-		textArea.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 13));
+		textArea.setFont(new Font("Arial", Font.PLAIN, 13));
 		
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(new Color(255, 255, 255));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox.setBounds(140, 183, 66, 22);
+		comboBox.setBounds(141, 181, 66, 22);
 		contentPane.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Publish");
@@ -120,23 +118,21 @@ public class ReviewPage extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(7, 101, 156));
-		btnNewButton.setOpaque(true);
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnNewButton.setBounds(484, 169, 144, 41);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Reviews");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
+		lblNewLabel_1.setBackground(new Color(0, 0, 0));
+		lblNewLabel_1.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 20));
 		lblNewLabel_1.setBounds(10, 227, 87, 34);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Select Rating");
-		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 20));
+		lblNewLabel_1_1.setBackground(new Color(0, 0, 0));
+		lblNewLabel_1_1.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD, 20));
 		lblNewLabel_1_1.setBounds(10, 172, 144, 34);
 		contentPane.add(lblNewLabel_1_1);
 		
@@ -146,7 +142,7 @@ public class ReviewPage extends JFrame {
 
         tableModel = new DefaultTableModel(new String[]{"Users", "", "Rating", "Review"}, 0);
         reviewTable = new JTable(tableModel);
-        reviewTable.setBackground(new Color(0, 128, 192));
+        reviewTable.setBackground(new Color(255, 255, 255));
         reviewTable.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 11));
         reviewTable.setForeground(new Color(255, 255, 255));
         tableScrollPane.setViewportView(reviewTable);
