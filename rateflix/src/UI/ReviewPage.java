@@ -64,9 +64,7 @@ public class ReviewPage extends JFrame {
 	 * Create the frame.
 	 */
 	public ReviewPage() {
-		
 		setTitle("ReviewFrame");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 652, 505);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
