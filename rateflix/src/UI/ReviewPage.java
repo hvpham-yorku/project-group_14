@@ -140,9 +140,7 @@ public class ReviewPage extends JFrame {
 
         tableModel = new DefaultTableModel(new String[]{"Users", "", "Rating", "Review"}, 0);
         reviewTable = new JTable(tableModel);
-        reviewTable.setBackground(new Color(255, 255, 255));
         reviewTable.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 11));
-        reviewTable.setForeground(new Color(255, 255, 255));
         tableScrollPane.setViewportView(reviewTable);
         
         reviewTable.getColumnModel().getColumn(0).setPreferredWidth(100);
