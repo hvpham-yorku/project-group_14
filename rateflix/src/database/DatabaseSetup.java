@@ -55,10 +55,34 @@ public class DatabaseSetup {
                 FOREIGN KEY (watchlist_name) REFERENCES watchlist_names(name) ON DELETE CASCADE
             );
         """;
+	    
+        // SQL to create the users table
+        String createUsersTableSQL = """
+            CREATE TABLE IF NOT EXISTS users (
+                username VARCHAR(20) NOT NULL,
+                password VARCHAR(20) NULL,
+                PRIMARY KEY (username)
+            );
+        """;
+
+        // SQL to create the reviews table
+        String createReviewsTableSQL = """
+            CREATE TABLE IF NOT EXISTS reviews (
+                id VARCHAR(200) NOT NULL,
+                customer_id VARCHAR(200) NULL,
+                rating INT NULL,
+                timestamp TIMESTAMP NULL,
+                review VARCHAR(500) NULL,
+                PRIMARY KEY (id),
+                FOREIGN KEY (customer_id) REFERENCES users(username) ON DELETE CASCADE
+            );
+        """;
 
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(createWatchlistNamesTableSQL); //creates the tables
             stmt.execute(createWatchlistItemsTableSQL);
+	    stmt.execute(createUsersTableSQL);
+            stmt.execute(createReviewsTableSQL);
         } catch (SQLException e) {
             throw new RuntimeException("Failed to create required tables", e);
         }
