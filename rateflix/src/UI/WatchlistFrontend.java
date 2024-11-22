@@ -5,6 +5,8 @@ import database.DatabaseSetup;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +17,7 @@ public class WatchlistFrontend {
 	private JFrame frame;
 	private JPanel movieGridPanel;
 	private JComboBox<String> ratingDropdown, watchlistDropdown, filterDropdown;
-	private JButton deleteButton, addWatchlistButton, removeWatchlistButton;
+	private JButton deleteButton, addWatchlistButton, removeWatchlistButton, viewReviewsButton;
 	private String currentWatchlist;
 	private WatchlistItem selectedItem;
 
@@ -67,11 +69,15 @@ public class WatchlistFrontend {
 
 	    removeWatchlistButton = new JButton("Remove Watchlist");
 	    removeWatchlistButton.addActionListener(e -> removeWatchlist());
-
+	    
+	    viewReviewsButton = new JButton("View Reviews");
+	    viewReviewsButton.addActionListener(e -> new ReviewPage());
+	    
 	    watchlistControls.add(new JLabel("Select Watchlist:"));
 	    watchlistControls.add(watchlistDropdown);
 	    watchlistControls.add(addWatchlistButton);
 	    watchlistControls.add(removeWatchlistButton);
+	    watchlistControls.add(viewReviewsButton);
 
 	    panel.add(watchlistControls, BorderLayout.EAST);
 	    return panel;
