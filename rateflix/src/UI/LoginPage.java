@@ -14,7 +14,7 @@ import database.DatabaseSetup;
 public class LoginPage extends JFrame implements ActionListener {
 	private JTextField usernameField;
 	private JPasswordField passwordField;
-	private JButton loginBtn;
+	private JButton loginBtn, RegBtn;
 	
 	public LoginPage() {
 		initialize();
@@ -47,6 +47,18 @@ public class LoginPage extends JFrame implements ActionListener {
         loginBtn = new JButton("Login");
         loginBtn.addActionListener(this);
         
+        RegBtn = new JButton("Don't have an Account?");
+        RegBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new RegisterPage();
+			}
+        	
+        });
+        
+        
         JPanel usernamePanel = new JPanel();
 		usernamePanel.add(usernameLabel);
 		usernamePanel.add(usernameField);
@@ -59,6 +71,7 @@ public class LoginPage extends JFrame implements ActionListener {
 		panel.add(passwordPanel);
         
         JPanel buttonPanel = new JPanel();
+        buttonPanel.add(RegBtn);
 		buttonPanel.add(loginBtn);
 		
 		panel.add(buttonPanel);

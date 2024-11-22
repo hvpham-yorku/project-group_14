@@ -15,7 +15,7 @@ public class RegisterPage extends JFrame implements ActionListener {
 	private JTextField usernameField;
 	private JPasswordField passwordField;
 	private JPasswordField confirmPasswordField;
-	private JButton registerButton;
+	private JButton registerButton, LoginBtn;
 	private JCheckBox showPasswordCheckbox;
 	
 	public RegisterPage() {
@@ -59,6 +59,16 @@ public class RegisterPage extends JFrame implements ActionListener {
         registerButton = new JButton("Register");
         registerButton.addActionListener((ActionListener) this);
         
+        LoginBtn = new JButton("Have an Account?");
+        LoginBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new LoginPage();
+			}
+        	
+        });
+        
         showPasswordCheckbox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -81,6 +91,7 @@ public class RegisterPage extends JFrame implements ActionListener {
 		panel.add(new JLabel(""));
 		panel.add(showPasswordCheckbox);
         panel.add(registerButton);
+        panel.add(LoginBtn);
 
         mainPanel.add(panel, BorderLayout.CENTER);
         
