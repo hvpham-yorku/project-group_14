@@ -70,14 +70,14 @@ public class WatchlistFrontend {
 	    removeWatchlistButton = new JButton("Remove Watchlist");
 	    removeWatchlistButton.addActionListener(e -> removeWatchlist());
 	    
-	    viewReviewsButton = new JButton("View Reviews");
-	    viewReviewsButton.addActionListener(e -> new ReviewPage());
+//	    viewReviewsButton = new JButton("View Reviews");
+//	    viewReviewsButton.addActionListener(e -> new ReviewPage());
 	    
 	    watchlistControls.add(new JLabel("Select Watchlist:"));
 	    watchlistControls.add(watchlistDropdown);
 	    watchlistControls.add(addWatchlistButton);
 	    watchlistControls.add(removeWatchlistButton);
-	    watchlistControls.add(viewReviewsButton);
+//	    watchlistControls.add(viewReviewsButton);
 
 	    panel.add(watchlistControls, BorderLayout.EAST);
 	    return panel;
@@ -297,6 +297,7 @@ public class WatchlistFrontend {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				selectedItem = item;
 				deleteButton.setEnabled(true); // Enable delete button when an item is selected
+				new ReviewPage();
 			}
 		});
 
