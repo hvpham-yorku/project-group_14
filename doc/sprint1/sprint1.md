@@ -45,11 +45,7 @@ Finalize and deliver the **Movie Search Functionality**, with a focus on databas
 ---
 
 ## Team Capacity
-- **Team Member 1:** 20  
-- **Team Member 2:** 20  
-- **Team Member 3:** 20 
-- **Team Member 4:** 20  
-- **Team Member 5:** 20 
+"The team has a total capacity of approximately 100 hours for this sprint, with each member contributing an average of 20 hours based on their availability." 
 
 
 ## Tasks Breakdown
