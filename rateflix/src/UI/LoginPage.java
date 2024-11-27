@@ -8,7 +8,6 @@ import java.sql.*;
 
 import javax.swing.*;
 
-import base.User;
 import database.DatabaseSetup;
 
 public class LoginPage extends JFrame implements ActionListener {
@@ -22,7 +21,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	
 	public void initialize() {
 		setTitle("Child Login");
-        setSize(300, 200);
+        setSize(500, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
