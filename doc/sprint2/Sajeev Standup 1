@@ -1,0 +1,15 @@
+[Date: 2024-11-26] - Sprint 2 - Standup 1
+
+What did you work on since the last standup?
+I completed the watchlist feature, which allows users to add/remove watchlists and add/remove movies or shows from the list integrated into a local MySQL database. 
+
+What do you commit to next?
+I will be working on integrating the database for reviews and movies so that when a review is added for a movie, it is connected to the database.
+Additionally, I will work on implementing thumbnails for movies/TV shows using the TMDB API.
+
+When do you think you'll be done?
+These tasks will take about 4 days to complete.
+
+Do you have any blockers?
+The current project build setup makes it difficult to add thumbnails for movies because dependencies are harder to manage. 
+Converting the project to Maven would make handling dependencies such as the TMDB API easier.
