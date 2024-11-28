@@ -1,5 +1,6 @@
 package UI;
 
+import base.User;
 import base.WatchlistItem;
 import database.DatabaseSetup;
 
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 
 public class WatchlistFrontend {
 
+	private User user;
 	private JFrame frame;
 	private JPanel movieGridPanel;
 	private JComboBox<String> ratingDropdown, watchlistDropdown, filterDropdown;
@@ -22,10 +24,12 @@ public class WatchlistFrontend {
 	private WatchlistItem selectedItem;
 
 	public static void main(String[] args) {
-		new WatchlistFrontend().run();
+		User user = new User(LoginPage.getLoggedUser(), LoginPage.getLoggedPassword());
+		new WatchlistFrontend().run(user);
 	}
 
-	void run() {
+	void run(User user) {
+		this.user = user;
 		setupUI();
 		loadWatchlists();
 	}
@@ -53,7 +57,7 @@ public class WatchlistFrontend {
 	    JPanel panel = new JPanel(new BorderLayout());
 
 	    // Title Label
-	    JLabel title = new JLabel("My Watchlists", SwingConstants.CENTER);
+	    JLabel title = new JLabel(user.getUserName() + " Watchlists", SwingConstants.CENTER);
 	    title.setFont(new Font("Arial", Font.BOLD, 24));
 	    panel.add(title, BorderLayout.WEST);
 

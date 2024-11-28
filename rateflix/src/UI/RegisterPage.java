@@ -2,6 +2,7 @@ package UI;
 
 import javax.swing.*;
 
+import base.User;
 import database.DatabaseSetup;
 
 import java.awt.BorderLayout;
@@ -127,7 +128,8 @@ public class RegisterPage extends JFrame implements ActionListener {
 	    }
 	        
 	        private void openHome() {
-	            new WatchlistFrontend().run();
+	        	User user = new User(usernameField.getText(), new String(passwordField.getPassword()));
+	            new WatchlistFrontend().run(user);
 	        }
 	        
 	    	public static void main(String[] args) {

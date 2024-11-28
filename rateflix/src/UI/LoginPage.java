@@ -8,15 +8,24 @@ import java.sql.*;
 
 import javax.swing.*;
 
+import base.User;
 import database.DatabaseSetup;
 
 public class LoginPage extends JFrame implements ActionListener {
-	private JTextField usernameField;
-	private JPasswordField passwordField;
+	private static JTextField usernameField;
+	private static JPasswordField passwordField;
 	private JButton loginBtn, RegBtn;
 	
 	public LoginPage() {
 		initialize();
+	}
+	
+	public static String getLoggedUser() {
+		return usernameField.getText();
+	}
+	
+	public static String getLoggedPassword() {
+		return new String(passwordField.getPassword());
 	}
 	
 	public void initialize() {
@@ -86,7 +95,7 @@ public class LoginPage extends JFrame implements ActionListener {
         
         if (authenticate(username, password)) {
             JOptionPane.showMessageDialog(this, "Login successful!"); 
-            openHome();
+            openHome(username, password);
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.");
@@ -110,8 +119,9 @@ public class LoginPage extends JFrame implements ActionListener {
            return false;
     }
     
-    private void openHome() {
-        new WatchlistFrontend().run();
+    private void openHome(String username, String password) {
+    	User user = new User(username,password);
+        new WatchlistFrontend().run(user);
     }
 	
 	public static void main(String[] args) {
