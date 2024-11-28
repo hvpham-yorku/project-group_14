@@ -60,7 +60,19 @@ public class WatchlistFrontend {
 	    JLabel title = new JLabel(user.getUserName() + " Watchlists", SwingConstants.CENTER);
 	    title.setFont(new Font("Arial", Font.BOLD, 24));
 	    panel.add(title, BorderLayout.WEST);
+	    
+	    JButton accountButton = new JButton("View Account");
+	    accountButton.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new AccountView(user);
+				
+			}
+	    	
+	    });
+	    panel.add(accountButton);
 	    // Watchlist Controls
 	    JPanel watchlistControls = new JPanel(new FlowLayout(FlowLayout.LEFT));
 

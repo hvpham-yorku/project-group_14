@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 
 import javax.swing.*;
@@ -55,6 +57,15 @@ public class AccountView {
         GridBagConstraints gbc = new GridBagConstraints();
         JLabel userDetailsLabel = new JLabel("User Details Section");
         backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new WatchlistFrontend().run(user);
+			}
+        	
+        });
         JLabel currUser = new JLabel(user.getUserName());
         changeName = new JButton("Change");
         
