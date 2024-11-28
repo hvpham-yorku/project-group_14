@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +22,7 @@ public class WatchlistFrontend {
 	private JPanel movieGridPanel;
 	private JComboBox<String> ratingDropdown, watchlistDropdown, filterDropdown;
 	private JButton deleteButton, addWatchlistButton, removeWatchlistButton, viewReviewsButton;
+	private JTextField search;
 	private String currentWatchlist;
 	private WatchlistItem selectedItem;
 
@@ -74,6 +77,24 @@ public class WatchlistFrontend {
 	    removeWatchlistButton = new JButton("Remove Watchlist");
 	    removeWatchlistButton.addActionListener(e -> removeWatchlist());
 	    
+	    search = new JTextField("Search");
+	    search.setFont(new Font("Arial", Font.PLAIN, 20));
+	    search.setColumns(13);
+	    search.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyReleased(KeyEvent arg0) {
+	    		if (search.getText().equals("Search")) {
+	    			
+	    		}
+	    		else if (search.getText().equals("")) {
+	    			loadItems();
+	    		}
+	    		else {
+	    			loadSearcheditems();
+	    		}
+	    	}
+	    });
+	    
 //	    viewReviewsButton = new JButton("View Reviews");
 //	    viewReviewsButton.addActionListener(e -> new ReviewPage());
 	    
@@ -81,6 +102,7 @@ public class WatchlistFrontend {
 	    watchlistControls.add(watchlistDropdown);
 	    watchlistControls.add(addWatchlistButton);
 	    watchlistControls.add(removeWatchlistButton);
+	    watchlistControls.add(search);
 //	    watchlistControls.add(viewReviewsButton);
 
 	    panel.add(watchlistControls, BorderLayout.EAST);
@@ -212,6 +234,29 @@ public class WatchlistFrontend {
 		} catch (SQLException e) {
 			showError("Error removing watchlist: " + e.getMessage());
 		}
+	}
+	
+	private void loadSearcheditems() {
+		movieGridPanel.removeAll();
+		try (Connection conn = DatabaseSetup.getConnection();
+				PreparedStatement stmt = conn
+						.prepareStatement("SELECT * FROM watchlist_items WHERE watchlist_name = ? AND title LIKE ?")) {
+
+			stmt.setString(1, currentWatchlist);
+			stmt.setString(2, "%" + search.getText() + "%");
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				WatchlistItem item = new WatchlistItem(rs.getInt("id"), rs.getString("title"), rs.getInt("rating"),
+						rs.getString("status"));
+				addCard(item);
+			}
+
+		} catch (SQLException e) {
+			showError("Error loading items: " + e.getMessage());
+		}
+
+		refreshGrid();
 	}
 
 	private void loadItems() {
