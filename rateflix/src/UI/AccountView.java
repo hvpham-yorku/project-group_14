@@ -84,7 +84,7 @@ public class AccountView {
     }
 
     public static void main(String[] args) {
-    	User user = new User("userName","password");
+    	User user = new User(LoginPage.getLoggedUser(),LoginPage.getLoggedPassword());
         new AccountView(user);
     }
 }
