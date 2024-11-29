@@ -23,7 +23,6 @@ public class LoginPage extends JFrame implements ActionListener {
 	public static String getLoggedUser() {
 		return usernameField.getText();
 	}
-	
 	public static String getLoggedPassword() {
 		return new String(passwordField.getPassword());
 	}
@@ -65,7 +64,6 @@ public class LoginPage extends JFrame implements ActionListener {
 			}
         	
         });
-        
         
         JPanel usernamePanel = new JPanel();
 		usernamePanel.add(usernameLabel);

@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.*;
 
 import javax.swing.*;
@@ -18,9 +19,11 @@ import database.DatabaseSetup;
 public class AccountView {
 	private User user;
     private JTextField descriptionField;
-    private JButton backButton, changePicButton, setPic, changeName;
+    private JButton backButton, setPic, changeName, saveButton;
     private JFrame frame;
 
+    private File file;
+    
     public AccountView(User user) {
     	this.user = user;
         initialize();
@@ -31,7 +34,10 @@ public class AccountView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 600);
         frame.setLayout(new BorderLayout());
-
+        
+        saveButton = new JButton("Save");
+        
+        frame.add(saveButton, BorderLayout.SOUTH);
         frame.add(createUserDetails(), BorderLayout.WEST);
         frame.add(createDescription(), BorderLayout.EAST);
 
@@ -55,45 +61,59 @@ public class AccountView {
     private JPanel createUserDetails() {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        JLabel userDetailsLabel = new JLabel("User Details Section");
-        backButton = new JButton("Back");
-        backButton.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new WatchlistFrontend().run(user);
-			}
-        	
-        });
-        JLabel currUser = new JLabel(user.getUserName());
-        changeName = new JButton("Change");
-        
+        JLabel userDetailsLabel = new JLabel("User Details Section");
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 50, 0);
         panel.add(userDetailsLabel, gbc);
+
+        setPic = new JButton("Set Picture");
+        setPic.addActionListener(this::pictureSetter);
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(currUser, gbc);
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        panel.add(changeName, gbc);
-        gbc.gridx = -1;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 50, 0);
+        panel.add(setPic, gbc);
+
+        JLabel currUser = new JLabel(user.getUserName());
+        gbc.gridx = 0;
         gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(0, 10, 50, 15);
+        panel.add(currUser, gbc);
+
+        changeName = new JButton("Change");
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(0, 10, 50, 0);
+        panel.add(changeName, gbc);
+
+        backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            frame.dispose();
+            new WatchlistFrontend().run(user);
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 0, 0, 0);
         panel.add(backButton, gbc);
+
         return panel;
     }
-    
-    public String fetchUsername() {
-    	String name = "TestName";
-    	try (Connection conn = DatabaseSetup.getConnection(); PreparedStatement stmt = conn.prepareStatement("SELECT username FROM users WHERE")){
-        	
-        } catch(SQLException e) {
-        	System.out.println("Error Fetching username: " + e.getMessage());
-        }
-    	return name;
-    }
 
+    
+    private void pictureSetter(ActionEvent e) {
+    	JFileChooser chooser = new JFileChooser();
+    	chooser.setMultiSelectionEnabled(false);
+    	if(chooser.showOpenDialog(null) == chooser.APPROVE_OPTION) {
+    		this.file = chooser.getSelectedFile();
+    	}
+    }
+    
+    
     public static void main(String[] args) {
     	User user = new User(LoginPage.getLoggedUser(),LoginPage.getLoggedPassword());
         new AccountView(user);
