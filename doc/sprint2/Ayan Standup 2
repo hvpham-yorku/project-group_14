@@ -1,0 +1,9 @@
+[November 29, 2024] - Sprint 2 Standup 2
+1. What did you work on since the last standup?
+- Finished the general UI of the account view page, added a system to access the account view and return back, and display loggedin user on main page.
+2. What do you commit to next?
+- I am planning on adding a functionality to store user descriptions in the database along with the updated/editted username. 
+3. When do you think you'll be done?
+- Around end of the weekend.
+4. Do you have any blockers?
+- Trying to figure out how to store images on a database.
