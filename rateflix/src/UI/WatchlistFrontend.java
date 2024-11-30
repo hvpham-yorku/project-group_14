@@ -21,7 +21,7 @@ public class WatchlistFrontend {
 	private JFrame frame;
 	private JPanel movieGridPanel;
 	private JComboBox<String> ratingDropdown, watchlistDropdown, filterDropdown;
-	private JButton deleteButton, addWatchlistButton, removeWatchlistButton, viewReviewsButton;
+	private JButton deleteButton, addWatchlistButton, removeWatchlistButton, viewReviewsButton, homeButton, accountButton;
 	private JTextField search;
 	private String currentWatchlist;
 	private WatchlistItem selectedItem;
@@ -64,7 +64,7 @@ public class WatchlistFrontend {
 	    title.setFont(new Font("Arial", Font.BOLD, 24));
 	    panel.add(title, BorderLayout.WEST);
 	    
-	    JButton accountButton = new JButton("View Account");
+	    accountButton = new JButton("👤");
 	    accountButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -75,7 +75,6 @@ public class WatchlistFrontend {
 			}
 	    	
 	    });
-	    panel.add(accountButton);
 	    // Watchlist Controls
 	    JPanel watchlistControls = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
@@ -89,16 +88,13 @@ public class WatchlistFrontend {
 	    removeWatchlistButton = new JButton("Remove Watchlist");
 	    removeWatchlistButton.addActionListener(e -> removeWatchlist());
 	    
-	    search = new JTextField("Search");
+	    search = new JTextField("");
 	    search.setFont(new Font("Arial", Font.PLAIN, 20));
 	    search.setColumns(13);
 	    search.addKeyListener(new KeyAdapter() {
 	    	@Override
 	    	public void keyReleased(KeyEvent arg0) {
-	    		if (search.getText().equals("Search")) {
-	    			
-	    		}
-	    		else if (search.getText().equals("")) {
+	    		if (search.getText().equals("")) {
 	    			loadItems();
 	    		}
 	    		else {
@@ -107,14 +103,26 @@ public class WatchlistFrontend {
 	    	}
 	    });
 	    
+	    homeButton = new JButton("🎥");
+	    homeButton.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    		frame.dispose();
+	    		new HomePage();
+	    	}
+	    });
+	    
+	    
 //	    viewReviewsButton = new JButton("View Reviews");
 //	    viewReviewsButton.addActionListener(e -> new ReviewPage());
 	    
+	    watchlistControls.add(accountButton);
 	    watchlistControls.add(new JLabel("Select Watchlist:"));
 	    watchlistControls.add(watchlistDropdown);
 	    watchlistControls.add(addWatchlistButton);
 	    watchlistControls.add(removeWatchlistButton);
 	    watchlistControls.add(search);
+	    watchlistControls.add(homeButton);
 //	    watchlistControls.add(viewReviewsButton);
 
 	    panel.add(watchlistControls, BorderLayout.EAST);
