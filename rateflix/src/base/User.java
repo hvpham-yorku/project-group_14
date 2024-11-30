@@ -20,6 +20,10 @@ public class User {
 	public String toString() {
 		return "User [userName=" + userName + ", Password=" + Password + "]";
 	}
+
+	public void setUserName(String name) {
+		this.userName = name;
+	}
 	
 	
 }
