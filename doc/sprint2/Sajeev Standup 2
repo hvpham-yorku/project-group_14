@@ -1,11 +1,11 @@
 [Date: 2024-11-29] - Sprint 2 - Standup 2
 What did you work on since the last standup?
 I integrated the reviews and watchlist tables in the database. I removed redundant ratings input from the watchlist UI and dynamically added average ratings from the reviews table.
-Also, I implemented a filter for reviews specific to a selected movie or show. Double clicking the movie opens the reviews page instead on a single click so it doesnt intefere with
-the delete function.
+Also, I implemented a filter for reviews specific to a selected movie or show. Double-clicking the movie opens the reviews page instead of a single click so it doesn't interfere with
+the delete function. All changes are added to the review-and-watchlist-updates branch.
 
 What do you commit to next?
-I will implement thumbnails for movies/tv shows using the TMDB API.
+I will implement thumbnails for movies/TV shows using the TMDB API.
 
 When do you think you'll be done?
 I think I’ll finish in about 3 days.
