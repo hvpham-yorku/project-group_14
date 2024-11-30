@@ -27,7 +27,7 @@ public class WatchlistFrontend {
 	private WatchlistItem selectedItem;
 
 	public static void main(String[] args) {
-		User user = new User(LoginPage.getLoggedUser(), LoginPage.getLoggedPassword());
+		User user = new User("DefaultUserName","DefaultPassword");
 		new WatchlistFrontend().run(user);
 	}
 
