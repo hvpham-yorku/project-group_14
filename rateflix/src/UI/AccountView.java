@@ -27,10 +27,13 @@ public class AccountView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 600);
         frame.setLayout(new BorderLayout());
-
-        saveButton = new JButton("Save");
-
-        frame.add(saveButton, BorderLayout.SOUTH);
+        backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            frame.dispose();
+            new WatchlistFrontend().run(user);
+        });
+        
+        frame.add(backButton, BorderLayout.SOUTH);
         frame.add(createUserDetails(), BorderLayout.WEST);
         frame.add(createDescription(), BorderLayout.EAST);
 
@@ -43,13 +46,43 @@ public class AccountView {
         descriptionField = new JTextField();
         JLabel desc = new JLabel("Your Description:");
         descriptionField.setPreferredSize(new Dimension(400, 200));
+        JButton saveDesc = new JButton("Save");
+        saveDesc.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveDescription();
+			}
+        	
+        });
         gbc.gridy = 0;
         panel.add(desc, gbc);
         gbc.gridx = 0;
         gbc.gridy = 1;
         panel.add(descriptionField, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(saveDesc,gbc);
         return panel;
     }
+    
+    private void saveDescription() {
+        try (Connection conn = DatabaseSetup.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("UPDATE users SET description = ? WHERE username = ?")) {
+            stmt.setString(1, descriptionField.getText());
+            stmt.setString(2, user.getUserName());
+            int rowsUpdated = stmt.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(frame, "Description updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Failed to update description.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(frame, "Error in saving description: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 
     private JPanel createUserDetails() {
         JPanel panel = new JPanel(new GridBagLayout());
@@ -59,7 +92,7 @@ public class AccountView {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
-        gbc.insets = new Insets(0, 0, 50, 0);
+        gbc.insets = new Insets(0, 60, 50, 0);
         panel.add(userDetailsLabel, gbc);
 
         setPic = new JButton("Set Picture");
@@ -67,32 +100,27 @@ public class AccountView {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 2;
-        gbc.insets = new Insets(0, 0, 50, 0);
+        gbc.insets = new Insets(0, 60, 50, 0);
         panel.add(setPic, gbc);
 
         JLabel currUser = new JLabel("Current Username: " + user.getUserName());
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
-        gbc.insets = new Insets(0, 10, 50, 0);
+        gbc.insets = new Insets(0, 70, 50, 0);
         panel.add(currUser, gbc);
 
         changeName = new JButton("Change Username");
         changeName.addActionListener(e -> openChangeUsernameDialog(currUser));
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.insets = new Insets(0, 10, 50, 0);
+        gbc.insets = new Insets(0, 70, 50, 0);
         panel.add(changeName, gbc);
-
-        backButton = new JButton("Back");
-        backButton.addActionListener(e -> {
-            frame.dispose();
-            new WatchlistFrontend().run(user);
-        });
+        
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
-        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.insets = new Insets(0, 60, 0, 0);
         panel.add(backButton, gbc);
 
         return panel;

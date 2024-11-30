@@ -28,7 +28,7 @@ public class LoginPage extends JFrame implements ActionListener {
 	}
 	
 	public void initialize() {
-		setTitle("Child Login");
+		setTitle("Account Login");
         setSize(500, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
