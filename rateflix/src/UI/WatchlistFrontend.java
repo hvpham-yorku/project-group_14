@@ -20,8 +20,8 @@ public class WatchlistFrontend {
 	private User user;
 	private JFrame frame;
 	private JPanel movieGridPanel;
-	private JComboBox<String> ratingDropdown, watchlistDropdown, filterDropdown;
-	private JButton deleteButton, addWatchlistButton, removeWatchlistButton, viewReviewsButton;
+	private JComboBox<String> watchlistDropdown;
+	private JButton deleteButton, addWatchlistButton, removeWatchlistButton;
 	private JTextField search;
 	private String currentWatchlist;
 	private WatchlistItem selectedItem;
@@ -57,70 +57,63 @@ public class WatchlistFrontend {
 	}
 
 	private JPanel createTitleAndWatchlistPanel() {
-	    JPanel panel = new JPanel(new BorderLayout());
+		JPanel panel = new JPanel(new BorderLayout());
 
-	    // Title Label
-	    JLabel title = new JLabel(user.getUserName() + " Watchlists", SwingConstants.CENTER);
-	    title.setFont(new Font("Arial", Font.BOLD, 24));
-	    panel.add(title, BorderLayout.WEST);
-	    
-	    JButton accountButton = new JButton("View Account");
-	    accountButton.addActionListener(new ActionListener() {
+		// Title Label
+		JLabel title = new JLabel(user.getUserName() + " Watchlists", SwingConstants.CENTER);
+		title.setFont(new Font("Arial", Font.BOLD, 24));
+		panel.add(title, BorderLayout.WEST);
+
+		JButton accountButton = new JButton("View Account");
+		accountButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				new AccountView(user);
-				
+
 			}
-	    	
-	    });
-	    panel.add(accountButton);
-	    // Watchlist Controls
-	    JPanel watchlistControls = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-	    // Select Watchlist Dropdown
-	    watchlistDropdown = new JComboBox<>();
-	    watchlistDropdown.addActionListener(e -> switchWatchlist((String) watchlistDropdown.getSelectedItem()));
+		});
+		panel.add(accountButton);
+		// Watchlist Controls
+		JPanel watchlistControls = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-	    addWatchlistButton = new JButton("Create Watchlist");
-	    addWatchlistButton.addActionListener(e -> openCreateWatchlistDialog());
+		// Select Watchlist Dropdown
+		watchlistDropdown = new JComboBox<>();
+		watchlistDropdown.addActionListener(e -> switchWatchlist((String) watchlistDropdown.getSelectedItem()));
 
-	    removeWatchlistButton = new JButton("Remove Watchlist");
-	    removeWatchlistButton.addActionListener(e -> removeWatchlist());
-	    
-	    search = new JTextField("Search");
-	    search.setFont(new Font("Arial", Font.PLAIN, 20));
-	    search.setColumns(13);
-	    search.addKeyListener(new KeyAdapter() {
-	    	@Override
-	    	public void keyReleased(KeyEvent arg0) {
-	    		if (search.getText().equals("Search")) {
-	    			
-	    		}
-	    		else if (search.getText().equals("")) {
-	    			loadItems();
-	    		}
-	    		else {
-	    			loadSearcheditems();
-	    		}
-	    	}
-	    });
-	    
-//	    viewReviewsButton = new JButton("View Reviews");
-//	    viewReviewsButton.addActionListener(e -> new ReviewPage());
-	    
-	    watchlistControls.add(new JLabel("Select Watchlist:"));
-	    watchlistControls.add(watchlistDropdown);
-	    watchlistControls.add(addWatchlistButton);
-	    watchlistControls.add(removeWatchlistButton);
-	    watchlistControls.add(search);
-//	    watchlistControls.add(viewReviewsButton);
+		addWatchlistButton = new JButton("Create Watchlist");
+		addWatchlistButton.addActionListener(e -> openCreateWatchlistDialog());
 
-	    panel.add(watchlistControls, BorderLayout.EAST);
-	    return panel;
+		removeWatchlistButton = new JButton("Remove Watchlist");
+		removeWatchlistButton.addActionListener(e -> removeWatchlist());
+
+		search = new JTextField("Search");
+		search.setFont(new Font("Arial", Font.PLAIN, 20));
+		search.setColumns(13);
+		search.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if (search.getText().equals("Search")) {
+
+				} else if (search.getText().equals("")) {
+					loadItems();
+				} else {
+					loadSearcheditems();
+				}
+			}
+		});
+
+		watchlistControls.add(new JLabel("Select Watchlist:"));
+		watchlistControls.add(watchlistDropdown);
+		watchlistControls.add(addWatchlistButton);
+		watchlistControls.add(removeWatchlistButton);
+		watchlistControls.add(search);
+
+		panel.add(watchlistControls, BorderLayout.EAST);
+		return panel;
 	}
-
 
 	private JPanel createAddSection() {
 		JPanel panel = new JPanel(new GridBagLayout());
@@ -136,17 +129,9 @@ public class WatchlistFrontend {
 		JTextField movieInputField = new JTextField(15);
 		panel.add(movieInputField, gbc);
 
-		// Rating Dropdown
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		panel.add(new JLabel("Rating:"), gbc);
-		gbc.gridx = 1;
-		ratingDropdown = new JComboBox<>(new String[] { "1", "2", "3", "4", "5" });
-		panel.add(ratingDropdown, gbc);
-
 		// Add and Delete Buttons
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 1;
 		JButton addButton = new JButton("Add Movie/Show");
 		addButton.addActionListener(e -> addItem(movieInputField.getText()));
 		panel.add(addButton, gbc);
@@ -247,7 +232,7 @@ public class WatchlistFrontend {
 			showError("Error removing watchlist: " + e.getMessage());
 		}
 	}
-	
+
 	private void loadSearcheditems() {
 		movieGridPanel.removeAll();
 		try (Connection conn = DatabaseSetup.getConnection();
@@ -275,15 +260,20 @@ public class WatchlistFrontend {
 		movieGridPanel.removeAll();
 
 		try (Connection conn = DatabaseSetup.getConnection();
-				PreparedStatement stmt = conn
-						.prepareStatement("SELECT * FROM watchlist_items WHERE watchlist_name = ?")) {
+				PreparedStatement stmt = conn.prepareStatement("SELECT id, title, status, "
+						+ "(SELECT AVG(r.rating) FROM reviews r WHERE r.title = w.title) AS avg_rating "
+						+ "FROM watchlist_items w WHERE w.watchlist_name = ?")) {
 
 			stmt.setString(1, currentWatchlist);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				WatchlistItem item = new WatchlistItem(rs.getInt("id"), rs.getString("title"), rs.getInt("rating"),
-						rs.getString("status"));
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String status = rs.getString("status");
+				double avgRating = rs.getDouble("avg_rating");
+
+				WatchlistItem item = new WatchlistItem(id, title, avgRating, status); // Include ID
 				addCard(item);
 			}
 
@@ -302,12 +292,11 @@ public class WatchlistFrontend {
 
 		try (Connection conn = DatabaseSetup.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(
-						"INSERT INTO watchlist_items (watchlist_name, title, rating, status) VALUES (?, ?, ?, ?)")) {
+						"INSERT INTO watchlist_items (watchlist_name, title, status) VALUES (?, ?, ?)")) {
 
 			stmt.setString(1, currentWatchlist);
 			stmt.setString(2, title);
-			stmt.setInt(3, Integer.parseInt((String) ratingDropdown.getSelectedItem()));
-			stmt.setString(4, "Not Watched");
+			stmt.setString(3, "Not Watched");
 
 			stmt.executeUpdate();
 			loadItems();
@@ -326,12 +315,15 @@ public class WatchlistFrontend {
 		try (Connection conn = DatabaseSetup.getConnection();
 				PreparedStatement stmt = conn.prepareStatement("DELETE FROM watchlist_items WHERE id = ?")) {
 
-			stmt.setInt(1, selectedItem.getId());
+			stmt.setInt(1, selectedItem.getId()); // Use the ID of the selected item
 			stmt.executeUpdate();
 
-			loadItems();
-			selectedItem = null;
-			deleteButton.setEnabled(false);
+			showMessage("Item '" + selectedItem.getTitle() + "' deleted successfully.");
+			loadItems(); // Reload the items after deletion
+			movieGridPanel.revalidate(); // Refresh the panel
+			movieGridPanel.repaint(); // Redraw the panel
+			selectedItem = null; // Reset selectedItem
+			deleteButton.setEnabled(false); // Disable the delete button
 
 		} catch (SQLException e) {
 			showError("Error deleting item: " + e.getMessage());
@@ -347,23 +339,29 @@ public class WatchlistFrontend {
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		card.add(titleLabel, BorderLayout.NORTH);
 
-		JLabel ratingLabel = new JLabel("\u2605".repeat(item.getRating()), SwingConstants.CENTER);
+		JLabel ratingLabel = new JLabel("\u2605".repeat((int) Math.round(item.getRating())), SwingConstants.CENTER);
 		ratingLabel.setFont(new Font("Serif", Font.BOLD, 16));
-
 		ratingLabel.setForeground(Color.ORANGE);
 		card.add(ratingLabel, BorderLayout.SOUTH);
 
-		// Select the Item
 		card.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
 			public void mouseClicked(java.awt.event.MouseEvent e) {
-				selectedItem = item;
-				deleteButton.setEnabled(true); // Enable delete button when an item is selected
-				new ReviewPage();
+				selectedItem = item; // select item to be deleted
+				deleteButton.setEnabled(true); // Enable delete button when selected
+				if (e.getClickCount() == 2) { // Open ReviewPage on double-click
+					new ReviewPage(item.getTitle(), WatchlistFrontend.this::refreshWatchlist); // Use instance reference
+				}
 			}
 		});
 
-		// Add the card to the grid panel
 		movieGridPanel.add(card);
+	}
+
+	private void refreshWatchlist() {
+		loadItems(); // Reload items to reflect updated ratings
+		movieGridPanel.revalidate();
+		movieGridPanel.repaint();
 	}
 
 	private void refreshGrid() {

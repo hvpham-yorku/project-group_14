@@ -46,15 +46,14 @@ public class DatabaseSetup {
 
         // SQL to create the watchlist_items table
         String createWatchlistItemsTableSQL = """
-            CREATE TABLE IF NOT EXISTS watchlist_items (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                watchlist_name VARCHAR(255) NOT NULL,
-                title VARCHAR(255) NOT NULL,
-                rating INT NOT NULL,
-                status VARCHAR(50) NOT NULL,
-                FOREIGN KEY (watchlist_name) REFERENCES watchlist_names(name) ON DELETE CASCADE
-            );
-        """;
+                CREATE TABLE IF NOT EXISTS watchlist_items (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    watchlist_name VARCHAR(255) NOT NULL,
+                    title VARCHAR(255) NOT NULL,
+                    status VARCHAR(50) NOT NULL,
+                    FOREIGN KEY (watchlist_name) REFERENCES watchlist_names(name) ON DELETE CASCADE
+                );
+            """;
         
         String createUsersTableSQL = """
                 CREATE TABLE IF NOT EXISTS users (
@@ -64,14 +63,16 @@ public class DatabaseSetup {
         		);
             """;
         
-        String createReviewsTableSQL = """                
-                CREATE TABLE IF NOT EXISTS rateflix.reviews (
-        		    id VARCHAR(200) NOT NULL,
-        		    customer_id VARCHAR(200) NULL,
-        		    rating INT NULL,
-        		    timestamp TIMESTAMP NULL,
-        		    review VARCHAR(500) NULL,
-        			PRIMARY KEY (id));
+        String createReviewsTableSQL = """
+                CREATE TABLE IF NOT EXISTS reviews (
+                    id VARCHAR(200) NOT NULL,
+                    customer_id VARCHAR(200) NULL,
+                    title VARCHAR(255) NOT NULL, -- Added title column
+                    rating INT NULL,
+                    timestamp TIMESTAMP NULL,
+                    review VARCHAR(500) NULL,
+                    PRIMARY KEY (id)
+                );
             """;
 
         try (Statement stmt = connection.createStatement()) {
