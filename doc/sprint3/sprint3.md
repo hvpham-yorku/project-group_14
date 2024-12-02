@@ -1,11 +1,11 @@
 # Sprint 3 Planning Meeting (sprint3)
 
 ## Participants
-- **Ayan**:
-- **Ricky**: 
-- **Sajeev**:
-- **Devarsh**: 
-- **Ritik**:
+- **Ayan**: User management and user profile
+- **Ricky**: User reviews and search integration
+- **Sajeev**: Watchlist UI enhancements and API integration
+- **Devarsh**: Homepage design and documentation
+- **Ritik**: Documentation and sprint deliverables
 
 ---
 
@@ -45,11 +45,11 @@ The team will:
 ---
 
 ## Tasks and Assignments
-- **Ayan**: user account integration and user profile.
-- **Ricky**: 
-- **Sajeev**: 
-- **Devarsh**: 
-- **Ritik**: Update and finalize documentation.
+- **Ayan**: User management and user profile
+- **Ricky**: User reviews and search integration
+- **Sajeev**: Watchlist UI enhancements and API integration
+- **Devarsh**: Homepage design and documentation
+- **Ritik**: Documentation and sprint deliverables
 
 ---
 
