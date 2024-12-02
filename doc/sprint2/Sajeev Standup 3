@@ -1,4 +1,4 @@
-[Date: 2024-12-01] - Sprint 2 - Standup 3
+[Date: 2024-12-02] - Sprint 2 - Standup 3
 What did you work on since the last standup?
 I integrated the watchlist with the TMDB API to fetch movie thumbnails, converted the project to Maven, and implemented a highlight feature for selected movies in the watchlist.
 
