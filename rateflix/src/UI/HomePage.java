@@ -70,5 +70,5 @@ public class HomePage extends JFrame {
 
         setVisible(true);
 	}
-
 }
+

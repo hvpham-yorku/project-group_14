@@ -27,34 +27,34 @@ public class LoginPage extends JFrame implements ActionListener {
 	}
 
 	public void initialize() {
-		setTitle("Child Login");
-		setSize(500, 300);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("Account Login");
+        setSize(500, 300);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		JLabel usernameLabel = new JLabel("Username:");
-		usernameField = new JTextField(15);
+        JLabel usernameLabel = new JLabel("Username:");
+        usernameField = new JTextField(15);
 
-		JLabel passwordLabel = new JLabel("Password:");
-		passwordField = new JPasswordField(15);
-
-		passwordField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					loginBtn.doClick();
-				}
-			}
-		});
-
-		loginBtn = new JButton("Login");
-		loginBtn.addActionListener(this);
-
-		RegBtn = new JButton("Don't have an Account?");
-		RegBtn.addActionListener(new ActionListener() {
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordField = new JPasswordField(15);
+        
+        passwordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    loginBtn.doClick();
+                }
+            }
+        });
+        
+        loginBtn = new JButton("Login");
+        loginBtn.addActionListener(this);
+        
+        RegBtn = new JButton("Don't have an Account?");
+        RegBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

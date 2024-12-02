@@ -24,7 +24,7 @@ public class RegisterPage extends JFrame implements ActionListener {
 	}
 	
 	public void initialize() {
-		setTitle("Child Registration Page");
+		setTitle("Account Registration Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 200);
         setLocationRelativeTo(null); 

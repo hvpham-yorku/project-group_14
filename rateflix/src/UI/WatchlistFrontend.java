@@ -353,7 +353,7 @@ public class WatchlistFrontend {
 
 	private String fetchThumbnail(String title) {
 		try {
-			String apiKey = "API key"; // enter your TMDB api key here
+			String apiKey = "de339656cef9635716982b2a4adc2b8b"; // enter your TMDB api key here
 			String apiUrl = "https://api.themoviedb.org/3/search/movie?query=" + URLEncoder.encode(title, "UTF-8")
 					+ "&api_key=" + apiKey;
 
