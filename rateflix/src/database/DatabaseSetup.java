@@ -58,7 +58,9 @@ public class DatabaseSetup {
         String createUsersTableSQL = """
                 CREATE TABLE IF NOT EXISTS users (
         		    username VARCHAR(20) NOT NULL,
-        		    password VARCHAR(20) NULL,
+        		    password VARCHAR(20) NOT NULL,
+        		    description TEXT,
+        		    profilePic BLOB,
         			PRIMARY KEY (username)
         		);
             """;

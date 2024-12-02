@@ -4,6 +4,15 @@ import base.User;
 import base.WatchlistItem;
 import database.DatabaseSetup;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,7 +30,8 @@ public class WatchlistFrontend {
 	private JFrame frame;
 	private JPanel movieGridPanel;
 	private JComboBox<String> watchlistDropdown;
-	private JButton deleteButton, addWatchlistButton, removeWatchlistButton;
+	private JButton deleteButton, addWatchlistButton, removeWatchlistButton, viewReviewsButton, homeButton,
+			accountButton;
 	private JTextField search;
 	private String currentWatchlist;
 	private WatchlistItem selectedItem;
@@ -64,7 +74,7 @@ public class WatchlistFrontend {
 		title.setFont(new Font("Arial", Font.BOLD, 24));
 		panel.add(title, BorderLayout.WEST);
 
-		JButton accountButton = new JButton("View Account");
+		accountButton = new JButton("👤");
 		accountButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -75,7 +85,6 @@ public class WatchlistFrontend {
 			}
 
 		});
-		panel.add(accountButton);
 		// Watchlist Controls
 		JPanel watchlistControls = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
@@ -89,15 +98,13 @@ public class WatchlistFrontend {
 		removeWatchlistButton = new JButton("Remove Watchlist");
 		removeWatchlistButton.addActionListener(e -> removeWatchlist());
 
-		search = new JTextField("Search");
+		search = new JTextField("");
 		search.setFont(new Font("Arial", Font.PLAIN, 20));
 		search.setColumns(13);
 		search.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				if (search.getText().equals("Search")) {
-
-				} else if (search.getText().equals("")) {
+				if (search.getText().equals("")) {
 					loadItems();
 				} else {
 					loadSearcheditems();
@@ -105,12 +112,21 @@ public class WatchlistFrontend {
 			}
 		});
 
+		homeButton = new JButton("🎥");
+		homeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new HomePage();
+			}
+		});
+		watchlistControls.add(accountButton);
 		watchlistControls.add(new JLabel("Select Watchlist:"));
 		watchlistControls.add(watchlistDropdown);
 		watchlistControls.add(addWatchlistButton);
 		watchlistControls.add(removeWatchlistButton);
 		watchlistControls.add(search);
-
+		watchlistControls.add(homeButton);
 		panel.add(watchlistControls, BorderLayout.EAST);
 		return panel;
 	}
@@ -234,26 +250,31 @@ public class WatchlistFrontend {
 	}
 
 	private void loadSearcheditems() {
-		movieGridPanel.removeAll();
+		movieGridPanel.removeAll(); // Clear the current movie grid
 		try (Connection conn = DatabaseSetup.getConnection();
-				PreparedStatement stmt = conn
-						.prepareStatement("SELECT * FROM watchlist_items WHERE watchlist_name = ? AND title LIKE ?")) {
+				PreparedStatement stmt = conn.prepareStatement("SELECT w.id, w.title, w.status, "
+						+ "(SELECT AVG(r.rating) FROM reviews r WHERE r.title = w.title) AS avg_rating "
+						+ "FROM watchlist_items w " + "WHERE w.watchlist_name = ? AND w.title LIKE ?")) {
 
-			stmt.setString(1, currentWatchlist);
-			stmt.setString(2, "%" + search.getText() + "%");
+			stmt.setString(1, currentWatchlist); // Set the current watchlist name
+			stmt.setString(2, "%" + search.getText() + "%"); // Search query
+
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				WatchlistItem item = new WatchlistItem(rs.getInt("id"), rs.getString("title"), rs.getInt("rating"),
-						rs.getString("status"));
-				addCard(item);
-			}
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String status = rs.getString("status");
+				double avgRating = rs.getDouble("avg_rating");
 
+				WatchlistItem item = new WatchlistItem(id, title, avgRating, status);
+				addCard(item); // Add the card to the grid
+			}
 		} catch (SQLException e) {
 			showError("Error loading items: " + e.getMessage());
 		}
 
-		refreshGrid();
+		refreshGrid(); // Refresh the UI
 	}
 
 	private void loadItems() {
@@ -330,27 +351,96 @@ public class WatchlistFrontend {
 		}
 	}
 
+	private String fetchThumbnail(String title) {
+		try {
+			String apiKey = "API key"; // enter your TMDB api key here
+			String apiUrl = "https://api.themoviedb.org/3/search/movie?query=" + URLEncoder.encode(title, "UTF-8")
+					+ "&api_key=" + apiKey;
+
+			// Open the connection
+			HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
+			conn.setRequestMethod("GET");
+
+			// Read the response
+			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String inputLine;
+			StringBuilder response = new StringBuilder();
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+
+			// Parse JSON to extract the poster_path
+			JSONObject jsonResponse = new JSONObject(response.toString());
+			JSONArray results = jsonResponse.getJSONArray("results");
+			if (results.length() > 0) {
+				String posterPath = results.getJSONObject(0).getString("poster_path");
+				return "https://image.tmdb.org/t/p/w500" + posterPath;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private JPanel selectedCard;
+
 	private void addCard(WatchlistItem item) {
 		JPanel card = new JPanel(new BorderLayout());
-		card.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+		card.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1)); // Default border
 		card.setBackground(Color.WHITE);
+		card.setPreferredSize(new Dimension(220, 350)); // Fixed card size
 
 		JLabel titleLabel = new JLabel(item.getTitle(), SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		card.add(titleLabel, BorderLayout.NORTH);
+
+		// Fetch and display the thumbnail
+		new Thread(() -> {
+			String thumbnailUrl = fetchThumbnail(item.getTitle());
+			if (thumbnailUrl != null) {
+				try {
+					// Fetch the image from the URL
+					ImageIcon originalIcon = new ImageIcon(new URL(thumbnailUrl));
+					Image scaledImage = originalIcon.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH);
+					ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+					JLabel thumbnailLabel = new JLabel(scaledIcon);
+					SwingUtilities.invokeLater(() -> {
+						card.add(thumbnailLabel, BorderLayout.CENTER);
+						movieGridPanel.revalidate();
+						movieGridPanel.repaint();
+					});
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
 
 		JLabel ratingLabel = new JLabel("\u2605".repeat((int) Math.round(item.getRating())), SwingConstants.CENTER);
 		ratingLabel.setFont(new Font("Serif", Font.BOLD, 16));
 		ratingLabel.setForeground(Color.ORANGE);
 		card.add(ratingLabel, BorderLayout.SOUTH);
 
+		// handle selection and double-click
 		card.addMouseListener(new java.awt.event.MouseAdapter() {
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent e) {
-				selectedItem = item; // select item to be deleted
-				deleteButton.setEnabled(true); // Enable delete button when selected
-				if (e.getClickCount() == 2) { // Open ReviewPage on double-click
-					new ReviewPage(item.getTitle(), WatchlistFrontend.this::refreshWatchlist); // Use instance reference
+				if (e.getClickCount() == 1) { // Single click for selection
+					selectedItem = item;
+					deleteButton.setEnabled(true); // Enable delete button
+
+					// Update the visual selection
+					if (selectedCard != null) {
+						selectedCard.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1)); // Reset previous card
+						selectedCard.setBackground(Color.WHITE); // Reset previous card background
+					}
+
+					selectedCard = card;
+					card.setBorder(BorderFactory.createLineBorder(Color.GRAY, 3)); // Highlight the selected card
+					card.setBackground(new Color(230, 240, 255)); // Slightly shaded background
+				} else if (e.getClickCount() == 2) { // Double click to open ReviewPage
+					new ReviewPage(item.getTitle(), WatchlistFrontend.this::refreshWatchlist);
 				}
 			}
 		});
