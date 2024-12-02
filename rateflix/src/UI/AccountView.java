@@ -2,8 +2,11 @@ package UI;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import base.User;
@@ -14,6 +17,7 @@ public class AccountView {
     private JTextField descriptionField, newNameField;
     private JButton backButton, setPic, changeName, saveButton;
     private JFrame frame;
+    private JLabel img;
 
     private File file;
 
@@ -94,13 +98,18 @@ public class AccountView {
         gbc.gridwidth = 2;
         gbc.insets = new Insets(0, 60, 50, 0);
         panel.add(userDetailsLabel, gbc);
-
         setPic = new JButton("Set Picture");
         setPic.addActionListener(this::pictureSetter);
+        img = loadProfilePicture();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 2;
-        gbc.insets = new Insets(0, 60, 50, 0);
+        gbc.insets = new Insets(0, 60, 20, 0);
+        panel.add(img, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(0, 450, 50, 0);
         panel.add(setPic, gbc);
 
         JLabel currUser = new JLabel("Current Username: " + user.getUserName());
@@ -184,10 +193,58 @@ public class AccountView {
     private void pictureSetter(ActionEvent e) {
         JFileChooser chooser = new JFileChooser();
         chooser.setMultiSelectionEnabled(false);
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        int result = chooser.showOpenDialog(frame);
+        if (result == JFileChooser.APPROVE_OPTION) {
             this.file = chooser.getSelectedFile();
+            String filePath = file.getAbsolutePath();
+
+            try (Connection conn = DatabaseSetup.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement("UPDATE users SET profilePic = ? WHERE username = ?")) {
+                stmt.setString(1, filePath);
+                stmt.setString(2, user.getUserName());
+                int rowsUpdated = stmt.executeUpdate();
+
+                if (rowsUpdated > 0) {
+                    JOptionPane.showMessageDialog(frame, "Profile picture updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Failed to update profile picture.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (SQLException err) {
+                JOptionPane.showMessageDialog(frame, "Database error: " + err.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
+
+    private JLabel loadProfilePicture() {
+        JLabel imgLabel = new JLabel();
+        try (Connection conn = DatabaseSetup.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT profilePic FROM users WHERE username = ?")) {
+            stmt.setString(1, user.getUserName());
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String filePath = rs.getString("profilePic");
+                if (filePath != null && !filePath.isEmpty()) {
+                    ImageIcon imageIcon = new ImageIcon(filePath);
+
+                    Image image = imageIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                    imageIcon = new ImageIcon(image);
+
+                    imgLabel.setIcon(imageIcon);
+                } else {
+                    imgLabel.setText("No image found.");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(frame, "Error retrieving profile picture: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            imgLabel.setText("Error loading image.");
+        }
+        return imgLabel;
+    }
+
+
+
+
 
     public static void main(String[] args) {
         User user = new User("defaultUser", "defaultPassword");
