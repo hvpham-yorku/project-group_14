@@ -1,0 +1,9 @@
+     [December 2, 2024] - Sprint 2 # Standup 3 #
+      1. What did you work on since the last standup?
+      Home Screen for the application
+      2. What do you commit to next? 
+      Will now work on GUI with all movies and implement a search feature
+      3. When do you think you'll be done?
+      This feature should take 2 working days
+      4. Do you have any blockers?
+      Using movie database API to show movie thumbnails and trending movies should prevent blockers
