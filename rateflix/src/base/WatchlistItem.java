@@ -3,19 +3,19 @@ package base;
 public class WatchlistItem {
     private int id; // Unique id for the watchlist item
     private String title; 
-    private int rating; // Rating (1-5)
+    private double rating; // Rating (1-5)
     private String status; // Watched or Not Watched
 
     public WatchlistItem() {
     }
 
-    public WatchlistItem(String title, int rating, String status) {
+    public WatchlistItem(String title, double rating, String status) {
         this.title = title;
         this.rating = rating;
         this.status = status;
     }
 
-    public WatchlistItem(int id, String title, int rating, String status) {
+    public WatchlistItem(int id, String title, double rating, String status) {
         this.id = id;
         this.title = title;
         this.rating = rating;
@@ -38,11 +38,11 @@ public class WatchlistItem {
         this.title = title;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 

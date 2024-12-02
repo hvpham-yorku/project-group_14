@@ -15,14 +15,16 @@ import database.DatabaseSetup;
 public class Review{
 
     private String id;
+    private String title;
     private String customer_id;
     private int rating;
     private LocalDateTime timestamp;
     private String review;
 
-    public Review(String customer_id, int rating, String review) {
-        super();
+    public Review(String customer_id, String title, int rating, String review) {
+    	super();
         this.customer_id = customer_id;
+        this.title = title; 
         this.rating = rating;
         this.review = review;
     }
@@ -70,6 +72,9 @@ public class Review{
     public void setReview(String review) {
         this.review = review;
     }
+	private String getTitle() {
+		return title;
+	}
 
     @Override
     public int hashCode() {
@@ -96,21 +101,20 @@ public class Review{
     }
     
     public boolean addReview(Review obj) {
-    	String sql = "INSERT INTO reviews (id, customer_id, rating, timestamp, review) " +
-                "VALUES (?, ?, ?, CURRENT_TIMESTAMP, ?);";
-		 try (Connection con = DatabaseSetup.getConnection();
-				 PreparedStatement ps = con.prepareStatement(sql)) {
-			 ps.setString(1, UUID.randomUUID().toString());
-			 ps.setString(2, "test"); //TESTING WILL CONNECT WITH CUSTOMER AFTER
-			 ps.setInt(3, obj.getRating());
-			 ps.setString(4, obj.getReview());
-			 
-			 return (ps.executeUpdate() > 0);
-		 
-		 } catch (SQLException e1) {
-			 throw new RuntimeException(e1);
-		 }
-    }
+        String sql = "INSERT INTO reviews (id, customer_id, title, rating, timestamp, review) " +
+                     "VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?);";
+        try (Connection con = DatabaseSetup.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, UUID.randomUUID().toString());
+            ps.setString(2, obj.getCustomer_id());
+            ps.setString(3, obj.getTitle()); // NEW FIELD
+            ps.setInt(4, obj.getRating());
+            ps.setString(5, obj.getReview());
 
+            return (ps.executeUpdate() > 0);
+        } catch (SQLException e1) {
+            throw new RuntimeException(e1);
+        }
+    }
 
 }

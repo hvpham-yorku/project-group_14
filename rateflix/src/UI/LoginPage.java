@@ -5,9 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.*;
-
 import javax.swing.*;
-
 import base.User;
 import database.DatabaseSetup;
 
@@ -15,18 +13,19 @@ public class LoginPage extends JFrame implements ActionListener {
 	private static JTextField usernameField;
 	private static JPasswordField passwordField;
 	private JButton loginBtn, RegBtn;
-	
+
 	public LoginPage() {
 		initialize();
 	}
-	
+
 	public static String getLoggedUser() {
 		return usernameField.getText();
 	}
+
 	public static String getLoggedPassword() {
 		return new String(passwordField.getPassword());
 	}
-	
+
 	public void initialize() {
 		setTitle("Account Login");
         setSize(500, 300);
@@ -62,70 +61,68 @@ public class LoginPage extends JFrame implements ActionListener {
 				dispose();
 				new RegisterPage();
 			}
-        	
-        });
-        
-        JPanel usernamePanel = new JPanel();
+
+		});
+
+		JPanel usernamePanel = new JPanel();
 		usernamePanel.add(usernameLabel);
 		usernamePanel.add(usernameField);
-		
+
 		JPanel passwordPanel = new JPanel();
 		passwordPanel.add(passwordLabel);
 		passwordPanel.add(passwordField);
-		
+
 		panel.add(usernamePanel);
 		panel.add(passwordPanel);
-        
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(RegBtn);
+
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(RegBtn);
 		buttonPanel.add(loginBtn);
-		
+
 		panel.add(buttonPanel);
-        add(panel);
-        setVisible(true);
-        
+		add(panel);
+		setVisible(true);
+
 	}
-	
+
 	@Override
-    public void actionPerformed(ActionEvent e) {
-        String username = usernameField.getText();
-        String password = new String(passwordField.getPassword());
-        
-        if (authenticate(username, password)) {
-            JOptionPane.showMessageDialog(this, "Login successful!"); 
-            openHome(username, password);
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.");
-        }
-    }
-    
-    private boolean authenticate(String username, String password) {
-    	// Establishing a database connection
-    	try (Connection connection = DatabaseSetup.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT * FROM users WHERE username = ? AND password = ?")) {
-               preparedStatement.setString(1, username);
-               preparedStatement.setString(2, password);
-               try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                   return resultSet.next();
-               }
-           } catch (SQLException ex) {
-        	   // Print stack trace in case of SQL exception
-               ex.printStackTrace();
-           }
-           return false;
-    }
-    
-    private void openHome(String username, String password) {
-    	User user = new User(username,password);
-        new WatchlistFrontend().run(user);
-    }
-	
+	public void actionPerformed(ActionEvent e) {
+		String username = usernameField.getText();
+		String password = new String(passwordField.getPassword());
+
+		if (authenticate(username, password)) {
+			JOptionPane.showMessageDialog(this, "Login successful!");
+			openHome(username, password);
+			dispose();
+		} else {
+			JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.");
+		}
+	}
+
+	private boolean authenticate(String username, String password) {
+		// Establishing a database connection
+		try (Connection connection = DatabaseSetup.getConnection();
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?")) {
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, password);
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				return resultSet.next();
+			}
+		} catch (SQLException ex) {
+			// Print stack trace in case of SQL exception
+			ex.printStackTrace();
+		}
+		return false;
+	}
+
+	private void openHome(String username, String password) {
+		User user = new User(username, password);
+		new WatchlistFrontend().run(user);
+	}
+
 	public static void main(String[] args) {
 		new LoginPage();
 	}
 
-	
 }
-
