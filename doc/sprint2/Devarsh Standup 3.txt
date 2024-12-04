@@ -1,0 +1,13 @@
+[December 2, 2024] - Sprint 2 Standup 3
+
+1. What did you work on since the last standup?
+   - Worked on ensuring the search results show movie posters, ratings, and brief synopses. Also, made sure the search function is responsive and displays results quickly.
+
+2. What do you commit to next?
+   - I will test the search functionality thoroughly and fix any bugs or performance issues.
+
+3. When do you think you'll be done?
+   - I plan to complete the testing and debugging by the end of today.
+
+4. Do you have any blockers?
+   - No blockers. Everything is functioning as expected.
