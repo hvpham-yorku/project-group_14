@@ -1,0 +1,13 @@
+[November 29, 2024] - Sprint 2 Standup 2
+
+1. What did you work on since the last standup?
+   - Finalized the autocomplete feature for the search bar and added genre and release date filters. Integrated them with the backend to display search results dynamically.
+
+2. What do you commit to next?
+   - I will focus on refining the search results page, ensuring it displays movie posters, ratings, and brief synopses for each result.
+
+3. When do you think you'll be done?
+   - I expect to finish refining the search results page within the next day.
+
+4. Do you have any blockers?
+   - No blockers, but I might need assistance later with styling the search results for consistency across different devices.
