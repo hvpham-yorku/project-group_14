@@ -1,0 +1,13 @@
+[November 26, 2024] - Sprint 2 Standup 1
+
+1. What did you work on since the last standup?
+   - Developed the movie search feature by creating a search bar interface and integrating it with the backend to retrieve movie data based on title, genre, and actor.
+
+2. What do you commit to next?
+   - I plan to implement autocomplete suggestions for the search bar and integrate filters for genre, release date, and ratings.
+
+3. When do you think you'll be done?
+   - I plan to implement autocomplete suggestions for the search bar and add filters for genre, release date, and ratings, expecting to complete these features within the next 1-2 days.
+
+4. Do you have any blockers?
+   - Currently, there are no obstacles, and everything is progressing smoothly as planned.
