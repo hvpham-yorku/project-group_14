@@ -1,0 +1,14 @@
+[November 28, 2024] - Sprint 2 Standup 2
+
+1) What did you work on since the last standup?
+- Implemented autocomplete suggestions for the search bar, allowing users to see dynamic results as they type.
+Added filters for genre, release date, and ratings, enabling refined movie searches.
+
+2) What do you commit to next?
+- I will work on integrating user ratings and reviews to the movie details page and enhance UI responsiveness for mobile devices.
+
+3)When do you think you'll be done?
+- I expect to complete the user ratings, reviews, and UI responsiveness tasks in 1-2 days.
+
+4) Do you have any blockers?
+- I encountered minor delays in optimizing the backend queries for autocomplete suggestions, but it has been resolved now.

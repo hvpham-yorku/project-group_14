@@ -1,0 +1,15 @@
+[December 1, 2024] - Sprint 3 Standup 3
+
+1) What did you work on since the last standup?
+- Integrated user ratings and reviews to the movie details page, enabling users to view and submit feedback.
+Improved UI responsiveness, ensuring the app works smoothly on both mobile and desktop screens.
+
+2) What do you commit to next?
+
+- I plan to implement the "watchlist" feature for users to save movies they are interested in. Additionally, I will add a sorting option for search results (e.g., by rating, popularity, or release date).
+
+3) When do you think you'll be done?
+- I aim to complete the watchlist and sorting features within the next 2-3 days.
+
+4) Do you have any blockers?
+- No significant blockers at the moment, but I may need additional time for testing the sorting algorithms to ensure accuracy and speed.
